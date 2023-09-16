@@ -140,7 +140,6 @@ if IsPedInAnyVehicle(PlayerPedId(), false) then
 Sleep = 1000
 local vehicle = GetVehiclePedIsIn(PlayerPedId(), false)
 local vehicleProps = ESX.Game.GetVehicleProperties(vehicle)
-vehicleProps.deformation = GetVehicleDeformation(vehicle)
 TriggerServerEvent('ap_garage:UpdateVehicleProperties', vehicleProps.plate, vehicleProps)
 end
 Wait(Sleep)
@@ -264,7 +263,6 @@ else
 SetVehicleFuelLevel(vehicle, data.vehicle.fuelLevel)
 end
 SetVehicleBodyHealth(vehicle, data.vehicle.bodyHealth)
-SetVehicleDeformation(vehicle, data.vehicle.deformation or GetVehicleDeformation(vehicle))
 ESX.Game.SetVehicleProperties(vehicle, data.vehicle)
 if AP.AutoTeleportToVehicle then
 TaskWarpPedIntoVehicle(PlayerPedId(), vehicle, -1)
@@ -677,7 +675,6 @@ end, data.vehType)
 end
 function SimpanKendaraan(garageName, vehicle)
 local vehicleProps = ESX.Game.GetVehicleProperties(vehicle)
-vehicleProps.deformation = GetVehicleDeformation(vehicle)
 ESX.TriggerServerCallback('ap_garage:CheckOwnedVehicle', function(data)
 if data and data[1].owner then
 if AP.Garages[garageName].Type == data[1].vehType then
