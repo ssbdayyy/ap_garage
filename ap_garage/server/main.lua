@@ -140,7 +140,7 @@ end)
 elseif giveType == 'kirimkendaraan' then
 MySQL.Async.fetchAll('SELECT * FROM owned_vehicles WHERE owner = ? AND plate = ?', {xidentifier,  plate}, function(result)
 if result[1] ~= nil then
-MySQL.Sync.execute('UPDATE owned_vehicles SET owner = ?, shared_key = NULL, WHERE plate = ?', {tidentifier, plate})
+MySQL.Sync.execute('UPDATE owned_vehicles SET owner = ?, shared_key = NULL WHERE plate = ?', {tidentifier, plate})
 TriggerClientEvent('ap_garage:Notify', xPlayer.source, 'success', (AP.Strings[AP.Translate].notif_source_veh):format(plate, xTarget.getName()))
 TriggerClientEvent('ap_garage:Notify', xTarget.source, 'inform', (AP.Strings[AP.Translate].notif_target_veh):format(plate, xPlayer.getName()))
 xPlayer.removeAccountMoney('bank', harga)
